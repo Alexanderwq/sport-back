@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SignUpController;
 use App\Http\Controllers\Auth\UserController;
@@ -7,8 +8,11 @@ use App\Http\Controllers\GetGymsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', UserController::class)
-    ->middleware('auth:sanctum');
+Route::middleware('auth:sanctum')
+    ->group(function () {
+        Route::get('/user', UserController::class);
+        Route::post('/change_password', ChangePasswordController::class);
+});
 
 Route::post('/login', LoginController::class);
 
