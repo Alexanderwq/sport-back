@@ -24,7 +24,7 @@ class ChangePasswordController
 
         if (!$user || !Hash::check($request->current_password, $user->password)) {
             throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
+                'email' => ['Не правильный логин или пароль.'],
             ]);
         }
 
