@@ -15,10 +15,10 @@ class GetScheduleListController
 
         return Training::query()
             ->select([
-                'types_training.name as trainingName',
+                'types_training.name as sportName',
                 'trainings.start_time as startTime',
                 'trainings.end_time as endTime',
-                'trainers.name as trainer',
+                'trainers.name as trainerName',
             ])
             ->join('trainers', 'trainers.id', '=', 'trainings.id_trainer')
             ->join('types_training', 'types_training.id', '=', 'trainings.type_training')
