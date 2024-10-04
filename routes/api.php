@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\GetClientsListController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SignUpController;
@@ -28,3 +29,6 @@ Route::post('/tokens/create', function (Request $request) {
 });
 
 Route::get('/gyms', GetGymsController::class);
+
+Route::get('/admin/clients', GetClientsListController::class);
+

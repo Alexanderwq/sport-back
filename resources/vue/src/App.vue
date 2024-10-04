@@ -2,14 +2,14 @@
   <header>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/">Клиенты</RouterLink>
+        <RouterLink to="/schedule">Расписание</RouterLink>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/">Home</RouterLink>
       </nav>
     </div>
   </header>
-  <Toast/>
+  <Toast position="top-center" />
 
   <RouterView/>
 </template>
