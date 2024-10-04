@@ -9,7 +9,7 @@ export default {
     return (await client.get('/api/admin/clients')).data
   },
 
-  getScheduleList() {
-
+  async getScheduleList() {
+    return (await client.get('/api/admin/schedule')).data
   },
 }
