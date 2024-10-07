@@ -4,7 +4,7 @@
       <nav>
         <RouterLink to="/">Клиенты</RouterLink>
         <RouterLink to="/schedule">Расписание</RouterLink>
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/trainers">Тренера</RouterLink>
         <RouterLink to="/">Home</RouterLink>
       </nav>
     </div>
