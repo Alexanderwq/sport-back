@@ -12,4 +12,22 @@ export default {
   async getScheduleList() {
     return (await client.get('/api/admin/schedule')).data
   },
+
+  async getTrainersList() {
+    return [
+      {
+        id: 1,
+        name: 'Юля'
+      }
+    ]
+  },
+
+  async getTypesTraining() {
+    return [
+      {
+        id: 1,
+        name: 'Футбол'
+      }
+    ]
+  },
 }
