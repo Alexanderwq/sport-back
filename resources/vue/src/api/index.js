@@ -14,12 +14,7 @@ export default {
   },
 
   async getTrainersList() {
-    return [
-      {
-        id: 1,
-        name: 'Юля'
-      }
-    ]
+    return (await client.get('/api/admin/trainers')).data
   },
 
   async getTypesTraining() {
@@ -38,5 +33,12 @@ export default {
       startTime,
       endTime,
     })
+  },
+
+  async createTrainer(name, lastName) {
+    return (await client.post('/api/admin/trainers', {
+      name,
+      lastName,
+    })).data
   },
 }

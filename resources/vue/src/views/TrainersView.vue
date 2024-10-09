@@ -3,20 +3,20 @@
     <h2>Список тренеров</h2>
     <div class="row-create">
       <InputText
+        v-model="name"
         placeholder="Имя"
       />
-      <Select
-        placeholder="Тип тренировки"
-        optionLabel="name"
-        :options="typesTraining"
+      <InputText
+        v-model="lastName"
+        placeholder="Фамилия"
       />
 
       <Button @click="addTrainer">Добавить тренера</Button>
     </div>
     <DataTable :value="trainersList" showGridlines>
       <Column field="id" header="ID"></Column>
-      <Column field="name" header="Тренер"></Column>
-      <Column field="sportName" header="Вид спорта"></Column>
+      <Column field="name" header="Имя"></Column>
+      <Column field="last_name" header="Фамилия"></Column>
     </DataTable>
   </main>
 </template>
@@ -24,7 +24,6 @@
 <script setup>
 import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
-import Select from "primevue/select";
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import {onMounted, ref} from "vue";
@@ -34,9 +33,22 @@ import api from '@/api'
 const toast = useToast();
 const trainersList = ref([])
 const typesTraining = ref([])
+const name = ref('')
+const lastName = ref('')
 
-const addTrainer = () => {
+const addTrainer = async () => {
+  if (name.value.length === 0 || lastName.value.length === 0) return
 
+  try {
+    trainersList.value = await api.createTrainer(name.value, lastName.value)
+  } catch (e) {
+    toast.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Произошла ошибка',
+      life: 5000,
+    });
+  }
 }
 
 onMounted(async () => {
