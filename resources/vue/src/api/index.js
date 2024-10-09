@@ -30,4 +30,13 @@ export default {
       }
     ]
   },
+
+  async createTraining(trainerId, typeTraining, startTime, endTime) {
+    return client.post('/api/admin/training/create', {
+      trainerId,
+      typeTraining,
+      startTime,
+      endTime,
+    })
+  },
 }

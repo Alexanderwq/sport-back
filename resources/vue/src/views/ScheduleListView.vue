@@ -6,16 +6,32 @@
         placeholder="Выберите тренера"
         optionLabel="name"
         :options="trainersList"
+        v-model="selectedTrainer"
       />
       <Select
         placeholder="Тип тренировки"
         optionLabel="name"
         :options="typesTraining"
+        v-model="selectedTypeTraining"
       />
-      <DatePicker id="datepicker-24h" v-model="startTime" showTime hourFormat="24" fluid />
-      <DatePicker id="datepicker-24h" v-model="endTime" showTime hourFormat="24" fluid />
+      <DatePicker
+        id="datepicker-24h"
+        v-model="startTime"
+        showTime
+        hourFormat="24"
+        fluid
+      />
+      <DatePicker
+        id="datepicker-24h"
+        v-model="endTime"
+        showTime
+        hourFormat="24"
+        fluid
+      />
 
-      <Button @click="addTraining">Добавить тренировку</Button>
+      <Button @click="addTraining">
+        Добавить тренировку
+      </Button>
     </div>
     <DataTable :value="scheduleList" showGridlines>
       <Column field="id" header="ID"></Column>
@@ -28,7 +44,7 @@
 </template>
 
 <script setup>
-import Button from 'primevue/button'
+import Button from 'primevue/button';
 import Select from "primevue/select";
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
@@ -43,9 +59,16 @@ const trainersList = ref([])
 const typesTraining = ref([])
 const startTime = ref();
 const endTime = ref();
+const selectedTrainer = ref()
+const selectedTypeTraining = ref()
 
-const addTraining = () => {
-
+const addTraining = async () => {
+  await api.createTraining(
+    selectedTrainer.value.id,
+    selectedTypeTraining.value.id,
+    startTime.value,
+    endTime.value,
+  )
 }
 
 onMounted(async () => {

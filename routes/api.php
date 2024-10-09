@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CreateTrainingController;
 use App\Http\Controllers\Admin\GetClientsListController;
 use App\Http\Controllers\Admin\ScheduleListController;
 use App\Http\Controllers\Auth\ChangePasswordController;
@@ -34,4 +35,6 @@ Route::get('/gyms', GetGymsController::class);
 Route::get('/admin/clients', GetClientsListController::class);
 
 Route::get('/admin/schedule', ScheduleListController::class);
+
+Route::post('/admin/training/create', CreateTrainingController::class);
 
