@@ -33,8 +33,15 @@
         Добавить тренировку
       </Button>
     </div>
-    <DataTable :value="scheduleList" showGridlines>
-      <Column field="id" header="ID"></Column>
+    <DataTable
+      :value="scheduleList"
+      paginator
+      :rows="10"
+      showGridlines
+      sortField="id"
+      :sortOrder="-1"
+    >
+      <Column field="id" header="ID" :sortable="true"></Column>
       <Column field="trainerName" header="Тренер"></Column>
       <Column field="sportName" header="Вид спорта"></Column>
       <Column field="startTime" header="Начало"></Column>
@@ -69,6 +76,7 @@ const addTraining = async () => {
     startTime.value,
     endTime.value,
   )
+  scheduleList.value = await api.getScheduleList()
 }
 
 onMounted(async () => {
