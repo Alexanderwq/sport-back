@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CreateTrainerController;
 use App\Http\Controllers\Admin\CreateTrainingController;
 use App\Http\Controllers\Admin\GetClientsListController;
 use App\Http\Controllers\Admin\GetTrainersController;
+use App\Http\Controllers\Admin\GetTrainingTypesController;
 use App\Http\Controllers\Admin\ScheduleListController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -43,4 +44,6 @@ Route::post('/admin/training/create', CreateTrainingController::class);
 Route::get('/admin/trainers', GetTrainersController::class);
 
 Route::post('/admin/trainers', CreateTrainerController::class);
+
+Route::get('/admin/training_types', GetTrainingTypesController::class);
 

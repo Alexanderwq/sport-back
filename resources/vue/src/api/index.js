@@ -18,12 +18,7 @@ export default {
   },
 
   async getTypesTraining() {
-    return [
-      {
-        id: 1,
-        name: 'Футбол'
-      }
-    ]
+    return (await client.get('/api/admin/training_types')).data
   },
 
   async createTraining(trainerId, typeTraining, startTime, endTime) {
