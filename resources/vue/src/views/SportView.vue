@@ -31,10 +31,8 @@ import InputText from 'primevue/inputtext'
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import {onMounted, ref} from "vue";
-import { useToast } from "primevue/usetoast";
-import api from '@/api'
+import api from '~/api'
 
-const toast = useToast();
 const typesTraining = ref([])
 const name = ref('')
 
@@ -42,12 +40,7 @@ const addSport = async () => {
   try {
     typesTraining.value = await api.createTrainingType(name.value)
   } catch (e) {
-    toast.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Произошла ошибка',
-      life: 5000,
-    });
+    alert('Произошла ошибка')
   }
 }
 
@@ -56,12 +49,7 @@ const removeSport = async (id) => {
     await api.removeTrainingType(id)
     typesTraining.value = typesTraining.value.filter(type => type.id !== id)
   } catch (e) {
-    toast.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Произошла ошибка',
-      life: 5000,
-    });
+    alert('Произошла ошибка')
   }
 }
 
@@ -69,12 +57,7 @@ onMounted(async () => {
   try {
     typesTraining.value = await api.getTypesTraining()
   } catch (e) {
-    toast.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Произошла ошибка при получении списка',
-      life: 5000,
-    });
+    alert('Произошла ошибка')
   }
 })
 </script>

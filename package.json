@@ -6,7 +6,7 @@
         "build": "vite build"
     },
     "dependencies": {
-        "@primevue/themes": "^4.0.7",
+        "@primevue/themes": "^4.1.0",
         "axios": "^1.7.4",
         "laravel-vite-plugin": "^1.0",
         "pinia": "^2.1.7",

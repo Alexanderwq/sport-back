@@ -66,11 +66,9 @@ import Select from "primevue/select";
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import {onMounted, ref} from "vue";
-import { useToast } from "primevue/usetoast";
-import api from '@/api'
+import api from '~/api'
 import DatePicker from "primevue/datepicker";
 
-const toast = useToast();
 const scheduleList = ref([])
 const trainersList = ref([])
 const typesTraining = ref([])
@@ -88,12 +86,7 @@ const addTraining = async () => {
       endTime.value,
     )
   } catch (e) {
-    toast.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Произошла ошибка',
-      life: 5000,
-    });
+    alert('Произошла ошибка')
   }
   scheduleList.value = await api.getScheduleList()
 }
@@ -103,12 +96,7 @@ const removeSchedule = async (id) => {
     await api.removeSchedule(id)
     scheduleList.value = await api.getScheduleList()
   } catch (e) {
-    toast.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Произошла ошибка',
-      life: 5000,
-    });
+    alert('Произошла ошибка')
   }
 }
 
@@ -118,12 +106,7 @@ onMounted(async () => {
     trainersList.value = await api.getTrainersList()
     scheduleList.value = await api.getScheduleList()
   } catch (e) {
-    toast.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Произошла ошибка при получении списка',
-      life: 5000,
-    });
+    alert('Произошла ошибка')
   }
 })
 </script>

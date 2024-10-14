@@ -37,10 +37,8 @@ import InputText from 'primevue/inputtext'
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import {onMounted, ref} from "vue";
-import { useToast } from "primevue/usetoast";
-import api from '@/api'
+import api from '~/api'
 
-const toast = useToast();
 const trainersList = ref([])
 const typesTraining = ref([])
 const name = ref('')
@@ -52,12 +50,7 @@ const addTrainer = async () => {
   try {
     trainersList.value = await api.createTrainer(name.value, lastName.value)
   } catch (e) {
-    toast.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Произошла ошибка',
-      life: 5000,
-    });
+    alert('Произошла ошибка')
   }
 }
 
@@ -66,12 +59,7 @@ const removeTrainer = async (id) => {
     await api.removeTrainer(id)
     trainersList.value = trainersList.value.filter(trainer => trainer.id !== id)
   } catch (e) {
-    toast.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Произошла ошибка',
-      life: 5000,
-    });
+    alert('Произошла ошибка')
   }
 }
 
@@ -80,12 +68,7 @@ onMounted(async () => {
     typesTraining.value = await api.getTypesTraining()
     trainersList.value = await api.getTrainersList()
   } catch (e) {
-    toast.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Произошла ошибка при получении списка',
-      life: 5000,
-    });
+    alert('Произошла ошибка')
   }
 })
 </script>
