@@ -36,4 +36,8 @@ export default {
       lastName,
     })).data
   },
+
+  async removeSchedule(id) {
+    return (await client.delete(`/api/schedule/${id}`))
+  },
 }

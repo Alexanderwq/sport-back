@@ -46,6 +46,16 @@
       <Column field="sportName" header="Вид спорта"></Column>
       <Column field="startTime" header="Начало"></Column>
       <Column field="endTime" header="Конец"></Column>
+      <Column field="id" header="">
+        <template #body="slotProps">
+          <Button
+            severity="danger"
+            @click="removeSchedule(slotProps.data.id)"
+          >
+            Удалить
+          </Button>
+        </template>
+      </Column>
     </DataTable>
   </main>
 </template>
@@ -70,13 +80,36 @@ const selectedTrainer = ref()
 const selectedTypeTraining = ref()
 
 const addTraining = async () => {
-  await api.createTraining(
-    selectedTrainer.value.id,
-    selectedTypeTraining.value.id,
-    startTime.value,
-    endTime.value,
-  )
+  try {
+    await api.createTraining(
+      selectedTrainer.value.id,
+      selectedTypeTraining.value.id,
+      startTime.value,
+      endTime.value,
+    )
+  } catch (e) {
+    toast.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Произошла ошибка',
+      life: 5000,
+    });
+  }
   scheduleList.value = await api.getScheduleList()
+}
+
+const removeSchedule = async (id) => {
+  try {
+    await api.removeSchedule(id)
+    scheduleList.value = await api.getScheduleList()
+  } catch (e) {
+    toast.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Произошла ошибка',
+      life: 5000,
+    });
+  }
 }
 
 onMounted(async () => {
