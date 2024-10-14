@@ -15,7 +15,6 @@ import Column from 'primevue/column';
 import {onMounted, ref} from "vue";
 import { useToast } from "primevue/usetoast";
 import api from '@/api'
-
 const toast = useToast();
 const clientsList = ref([])
 
