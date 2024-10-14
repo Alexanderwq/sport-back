@@ -5,7 +5,7 @@ import TrainersView from "~/views/TrainersView.vue";
 import SportView from "~/views/SportView.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',
