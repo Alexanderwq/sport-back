@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\SignUpController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\GetGymsController;
 use App\Http\Controllers\GetScheduleListController;
+use App\Http\Controllers\RemoveScheduleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,8 @@ Route::middleware('auth:sanctum')
 });
 
 Route::get('/schedule', GetScheduleListController::class);
+
+Route::delete('/schedule/{id}', RemoveScheduleController::class);
 
 Route::post('/login', LoginController::class);
 
