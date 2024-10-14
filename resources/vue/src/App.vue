@@ -5,6 +5,7 @@
         <RouterLink to="/">Клиенты</RouterLink>
         <RouterLink to="/schedule">Расписание</RouterLink>
         <RouterLink to="/trainers">Тренера</RouterLink>
+        <RouterLink to="/sports">Виды спорта</RouterLink>
       </nav>
     </div>
   </header>

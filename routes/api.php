@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Admin\CreateTrainerController;
 use App\Http\Controllers\Admin\CreateTrainingController;
+use App\Http\Controllers\Admin\CreateTrainingTypesController;
 use App\Http\Controllers\Admin\GetClientsListController;
 use App\Http\Controllers\Admin\GetTrainersController;
 use App\Http\Controllers\Admin\GetTrainingTypesController;
 use App\Http\Controllers\Admin\RemoveScheduleController;
 use App\Http\Controllers\Admin\RemoveTrainerController;
+use App\Http\Controllers\Admin\RemoveTrainingTypeController;
 use App\Http\Controllers\Admin\ScheduleListController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -53,3 +55,6 @@ Route::delete('/admin/schedule/{id}', RemoveScheduleController::class);
 
 Route::delete('/admin/trainers/{id}', RemoveTrainerController::class);
 
+Route::delete('/admin/training_types/{id}', RemoveTrainingTypeController::class);
+
+Route::post('/admin/training_types', CreateTrainingTypesController::class);

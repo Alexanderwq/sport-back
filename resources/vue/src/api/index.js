@@ -44,4 +44,14 @@ export default {
   async removeSchedule(id) {
     return (await client.delete(`/api/admin/schedule/${id}`))
   },
+
+  async removeTrainingType(id) {
+    return (await client.delete(`/api/admin/training_types/${id}`))
+  },
+
+  async createTrainingType(name) {
+    return (await client.post('/api/admin/training_types', {
+      name,
+    })).data
+  },
 }
