@@ -17,6 +17,16 @@
       <Column field="id" header="ID"></Column>
       <Column field="name" header="Имя"></Column>
       <Column field="last_name" header="Фамилия"></Column>
+      <Column field="id" header="">
+        <template #body="slotProps">
+          <Button
+            severity="danger"
+            @click="removeTrainer(slotProps.data.id)"
+          >
+            Удалить
+          </Button>
+        </template>
+      </Column>
     </DataTable>
   </main>
 </template>
@@ -41,6 +51,20 @@ const addTrainer = async () => {
 
   try {
     trainersList.value = await api.createTrainer(name.value, lastName.value)
+  } catch (e) {
+    toast.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Произошла ошибка',
+      life: 5000,
+    });
+  }
+}
+
+const removeTrainer = async (id) => {
+  try {
+    await api.removeTrainer(id)
+    trainersList.value = trainersList.value.filter(trainer => trainer.id !== id)
   } catch (e) {
     toast.add({
       severity: 'error',

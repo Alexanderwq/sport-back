@@ -37,7 +37,11 @@ export default {
     })).data
   },
 
+  async removeTrainer(id) {
+    return (await client.delete(`/api/admin/trainers/${id}`))
+  },
+
   async removeSchedule(id) {
-    return (await client.delete(`/api/schedule/${id}`))
+    return (await client.delete(`/api/admin/schedule/${id}`))
   },
 }

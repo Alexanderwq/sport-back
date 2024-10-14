@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\CreateTrainingController;
 use App\Http\Controllers\Admin\GetClientsListController;
 use App\Http\Controllers\Admin\GetTrainersController;
 use App\Http\Controllers\Admin\GetTrainingTypesController;
+use App\Http\Controllers\Admin\RemoveScheduleController;
+use App\Http\Controllers\Admin\RemoveTrainerController;
 use App\Http\Controllers\Admin\ScheduleListController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -12,7 +14,6 @@ use App\Http\Controllers\Auth\SignUpController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\GetGymsController;
 use App\Http\Controllers\GetScheduleListController;
-use App\Http\Controllers\RemoveScheduleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +24,6 @@ Route::middleware('auth:sanctum')
 });
 
 Route::get('/schedule', GetScheduleListController::class);
-
-Route::delete('/schedule/{id}', RemoveScheduleController::class);
 
 Route::post('/login', LoginController::class);
 
@@ -49,4 +48,8 @@ Route::get('/admin/trainers', GetTrainersController::class);
 Route::post('/admin/trainers', CreateTrainerController::class);
 
 Route::get('/admin/training_types', GetTrainingTypesController::class);
+
+Route::delete('/admin/schedule/{id}', RemoveScheduleController::class);
+
+Route::delete('/admin/trainers/{id}', RemoveTrainerController::class);
 
