@@ -30,11 +30,16 @@ export default {
     })
   },
 
-  async createTrainer(name, lastName, jobTitle) {
+  async createTrainer(name, lastName, jobTitle, photo) {
     return (await client.post('/api/admin/trainers', {
       name,
       lastName,
       jobTitle,
+      photo,
+    }, {
+      headers: {
+        "Content-Type": 'multipart/form-data',
+      },
     })).data
   },
 

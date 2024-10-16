@@ -14,6 +14,13 @@
         v-model="jobTitle"
         placeholder="Заголовок вида спорта"
       />
+      <FileUpload
+        ref="photoUpload"
+        mode="basic"
+        accept="image/*"
+        :maxFileSize="1000000"
+        @select="onSelectPhoto"
+      />
 
       <Button @click="addTrainer">Добавить тренера</Button>
     </div>
@@ -22,6 +29,7 @@
       <Column field="name" header="Имя"></Column>
       <Column field="last_name" header="Фамилия"></Column>
       <Column field="job_title" header="Заголовок"></Column>
+      <Column field="photo" header="Фото"></Column>
       <Column field="id" header="">
         <template #body="slotProps">
           <Button
@@ -37,6 +45,7 @@
 </template>
 
 <script setup>
+import FileUpload from "primevue/fileupload";
 import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
 import DataTable from 'primevue/datatable';
@@ -49,12 +58,22 @@ const typesTraining = ref([])
 const name = ref('')
 const lastName = ref('')
 const jobTitle = ref('')
+const photoUpload = ref();
+
+const onSelectPhoto = (event) => {
+  photoUpload.value = event.files[0]
+}
 
 const addTrainer = async () => {
   if (name.value.length === 0 || lastName.value.length === 0) return
 
   try {
-    trainersList.value = await api.createTrainer(name.value, lastName.value, jobTitle.value)
+    trainersList.value = await api.createTrainer(
+      name.value,
+      lastName.value,
+      jobTitle.value,
+      photoUpload.value,
+    )
   } catch (e) {
     alert('Произошла ошибка')
   }
