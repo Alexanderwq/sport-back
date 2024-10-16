@@ -12,12 +12,14 @@ class CreateTrainerController
     $request->validate([
       'name' => 'required|string',
       'lastName' => 'required|string',
+      'jobTitle' => 'required|string',
     ]);
 
     Trainer::query()
       ->insert([
         'name' => $request->name,
         'last_name' => $request->lastName,
+        'job_title' => $request->jobTitle,
       ]);
 
     return Trainer::all()->toArray();

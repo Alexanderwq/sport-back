@@ -30,10 +30,11 @@ export default {
     })
   },
 
-  async createTrainer(name, lastName) {
+  async createTrainer(name, lastName, jobTitle) {
     return (await client.post('/api/admin/trainers', {
       name,
       lastName,
+      jobTitle,
     })).data
   },
 

@@ -10,6 +10,10 @@
         v-model="lastName"
         placeholder="Фамилия"
       />
+      <InputText
+        v-model="jobTitle"
+        placeholder="Заголовок вида спорта"
+      />
 
       <Button @click="addTrainer">Добавить тренера</Button>
     </div>
@@ -17,6 +21,7 @@
       <Column field="id" header="ID"></Column>
       <Column field="name" header="Имя"></Column>
       <Column field="last_name" header="Фамилия"></Column>
+      <Column field="job_title" header="Заголовок"></Column>
       <Column field="id" header="">
         <template #body="slotProps">
           <Button
@@ -43,12 +48,13 @@ const trainersList = ref([])
 const typesTraining = ref([])
 const name = ref('')
 const lastName = ref('')
+const jobTitle = ref('')
 
 const addTrainer = async () => {
   if (name.value.length === 0 || lastName.value.length === 0) return
 
   try {
-    trainersList.value = await api.createTrainer(name.value, lastName.value)
+    trainersList.value = await api.createTrainer(name.value, lastName.value, jobTitle.value)
   } catch (e) {
     alert('Произошла ошибка')
   }

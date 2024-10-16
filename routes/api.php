@@ -16,6 +16,8 @@ use App\Http\Controllers\Auth\SignUpController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\GetGymsController;
 use App\Http\Controllers\GetScheduleListController;
+use App\Http\Controllers\GetTrainersListController;
+use App\Http\Controllers\Payment\CreatePaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -58,3 +60,7 @@ Route::delete('/admin/trainers/{id}', RemoveTrainerController::class);
 Route::delete('/admin/training_types/{id}', RemoveTrainingTypeController::class);
 
 Route::post('/admin/training_types', CreateTrainingTypesController::class);
+
+Route::post('/payment/create', CreatePaymentController::class);
+
+Route::get('/trainers', GetTrainersListController::class);
