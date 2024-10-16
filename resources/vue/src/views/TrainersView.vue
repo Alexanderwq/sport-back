@@ -11,6 +11,10 @@
         placeholder="Фамилия"
       />
       <InputText
+        v-model="description"
+        placeholder="Описание"
+      />
+      <InputText
         v-model="jobTitle"
         placeholder="Заголовок вида спорта"
       />
@@ -58,6 +62,7 @@ const typesTraining = ref([])
 const name = ref('')
 const lastName = ref('')
 const jobTitle = ref('')
+const description = ref('')
 const photoUpload = ref();
 
 const onSelectPhoto = (event) => {
@@ -73,6 +78,7 @@ const addTrainer = async () => {
       lastName.value,
       jobTitle.value,
       photoUpload.value,
+      description.value,
     )
   } catch (e) {
     alert('Произошла ошибка')

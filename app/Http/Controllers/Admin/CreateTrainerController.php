@@ -14,6 +14,7 @@ class CreateTrainerController
       'lastName' => 'required|string',
       'jobTitle' => 'required|string',
       'photo' => 'required|image|mimes:jpeg,png,jpg',
+      'description' => 'required|string',
     ]);
 
     $imageName = time() . '.' . $request->photo->extension();
@@ -26,6 +27,7 @@ class CreateTrainerController
         'last_name' => $request->lastName,
         'job_title' => $request->jobTitle,
         'photo' => $imageName,
+        'description' => $request->description,
       ]);
 
     return Trainer::all()->toArray();
