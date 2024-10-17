@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SignUpController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\GetGymsController;
+use App\Http\Controllers\GetPricesController;
 use App\Http\Controllers\GetScheduleListController;
 use App\Http\Controllers\GetTrainersListController;
 use App\Http\Controllers\Payment\CreatePaymentController;
@@ -64,3 +65,5 @@ Route::post('/admin/training_types', CreateTrainingTypesController::class);
 Route::post('/payment/create', CreatePaymentController::class);
 
 Route::get('/trainers', GetTrainersListController::class);
+
+Route::get('/prices', GetPricesController::class);
