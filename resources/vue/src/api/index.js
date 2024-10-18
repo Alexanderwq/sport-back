@@ -56,9 +56,23 @@ export default {
     return (await client.delete(`/api/admin/training_types/${id}`))
   },
 
-  async createTrainingType(name) {
+  async createTrainingType(name, ids) {
     return (await client.post('/api/admin/training_types', {
       name,
+      ids,
     })).data
+  },
+
+  async priceList() {
+    return (await client.get('/api/prices')).data
+  },
+
+  async createPrice(typeTraining, trainersIds, oneVisit, monthVisit) {
+    return (await client.post('/api/admin/prices', {
+      typeTraining,
+      trainersIds,
+      oneVisit,
+      monthVisit,
+    }))
   },
 }

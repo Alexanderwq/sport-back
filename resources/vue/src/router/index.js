@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import ScheduleListView from "~/views/ScheduleListView.vue";
 import TrainersView from "~/views/TrainersView.vue";
 import SportView from "~/views/SportView.vue";
+import PriceView from "~/views/PriceView.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: '/sports',
       name: 'Sports',
       component: SportView,
+    },
+    {
+      path: '/price',
+      name: 'Price',
+      component: PriceView,
     },
   ]
 })

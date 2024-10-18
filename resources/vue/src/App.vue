@@ -6,6 +6,7 @@
         <RouterLink to="/schedule">Расписание</RouterLink>
         <RouterLink to="/trainers">Тренера</RouterLink>
         <RouterLink to="/sports">Виды спорта</RouterLink>
+        <RouterLink to="/price">Цены</RouterLink>
       </nav>
     </div>
   </header>

@@ -11,11 +11,13 @@ class CreateTrainingTypesController
   {
     $request->validate([
       'name' => 'required|string',
+      'ids' => 'required|array',
     ]);
 
     TrainingTypes::query()
       ->insert([
         'name' => $request->name,
+        'trainers' => json_encode($request->ids),
       ]);
 
     return TrainingTypes::all()->toArray();

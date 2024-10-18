@@ -1,34 +1,43 @@
 <template>
   <main>
-    <h2>Виды спорта</h2>
+    <h2>Цены</h2>
     <div class="row-create">
+      <Select
+        placeholder="Тип тренировки"
+        optionLabel="name"
+        :options="typesTraining"
+        v-model="selectedTypeTraining"
+      />
       <InputText
-        v-model="name"
-        placeholder="Название"
+        v-model="oneVisit"
+        type="number"
+        placeholder="Цена за один визит"
       />
-      <MultiSelect
-        v-model="selectedTrainers"
-        :options="trainers"
-        optionLabel="last_name"
+      <InputText
+        v-model="monthVisit"
+        type="number"
+        placeholder="Цена за месяц"
       />
-      <Button @click="addSport">Добавить вид спорта</Button>
+
+      <Button @click="addPrice">Добавить направление</Button>
     </div>
-    <DataTable :value="typesTraining" showGridlines>
+    <DataTable :value="priceList" showGridlines>
       <Column field="id" header="ID"></Column>
       <Column field="name" header="Название"></Column>
       <Column header="Инструкторы">
         <template #body="slotProps">
           <div v-for="trainer in slotProps.data.trainers">
-            {{ trainers[trainer]?.name }}
-            {{ trainers[trainer]?.last_name }}
+            {{ trainer.name }} {{ trainer.last_name }}
           </div>
         </template>
       </Column>
+      <Column field="one_visit" header="Цена за один визит"></Column>
+      <Column field="month_visit" header="Цена за месяц"></Column>
       <Column field="id" header="">
         <template #body="slotProps">
           <Button
             severity="danger"
-            @click="removeSport(slotProps.data.id)"
+            @click="removePrice(slotProps.data.id)"
           >
             Удалить
           </Button>
@@ -48,24 +57,28 @@ import {onMounted, ref} from "vue";
 import api from '~/api'
 import Select from "primevue/select";
 
+const priceList = ref([])
 const typesTraining = ref([])
-const selectedTrainers = ref([])
-const trainers = ref([])
-const name = ref('')
+const oneVisit = ref()
+const monthVisit = ref()
+const selectedTypeTraining = ref()
 
-const addSport = async () => {
+const addPrice = async () => {
   try {
-    const ids = selectedTrainers.value.map(trainer => trainer.id)
-    typesTraining.value = await api.createTrainingType(name.value, ids)
+    await api.createPrice(
+      selectedTypeTraining.value.id,
+      oneVisit.value,
+      monthVisit.value,
+    )
+    priceList.value = await api.priceList()
   } catch (e) {
     alert('Произошла ошибка')
   }
 }
 
-const removeSport = async (id) => {
+const removePrice = async (id) => {
   try {
-    await api.removeTrainingType(id)
-    typesTraining.value = typesTraining.value.filter(type => type.id !== id)
+    await api.removeTrainer(id)
   } catch (e) {
     alert('Произошла ошибка')
   }
@@ -73,8 +86,8 @@ const removeSport = async (id) => {
 
 onMounted(async () => {
   try {
+    priceList.value = await api.priceList()
     typesTraining.value = await api.getTypesTraining()
-    trainers.value = await api.getTrainersList()
   } catch (e) {
     alert('Произошла ошибка')
   }
