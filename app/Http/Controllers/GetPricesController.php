@@ -26,7 +26,7 @@ class GetPricesController
       $price['trainers'] = array_map(function ($id) use ($trainers) {
         $index = array_search($id, array_column($trainers, 'id'));
         return $trainers[$index];
-      }, json_decode($price['trainers']));
+      }, json_decode($price['trainers']) ?? []);
     }
     return $prices;
   }

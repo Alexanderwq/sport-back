@@ -67,10 +67,9 @@ export default {
     return (await client.get('/api/prices')).data
   },
 
-  async createPrice(typeTraining, trainersIds, oneVisit, monthVisit) {
+  async createPrice(typeTraining, oneVisit, monthVisit) {
     return (await client.post('/api/admin/prices', {
       typeTraining,
-      trainersIds,
       oneVisit,
       monthVisit,
     }))

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CreatePriceController;
 use App\Http\Controllers\Admin\CreateTrainerController;
 use App\Http\Controllers\Admin\CreateTrainingController;
 use App\Http\Controllers\Admin\CreateTrainingTypesController;
@@ -61,6 +62,8 @@ Route::delete('/admin/trainers/{id}', RemoveTrainerController::class);
 Route::delete('/admin/training_types/{id}', RemoveTrainingTypeController::class);
 
 Route::post('/admin/training_types', CreateTrainingTypesController::class);
+
+Route::post('/admin/prices', CreatePriceController::class);
 
 Route::post('/payment/create', CreatePaymentController::class);
 
