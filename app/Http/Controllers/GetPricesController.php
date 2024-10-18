@@ -14,6 +14,7 @@ class GetPricesController
       ->select([
         'prices.*',
         'types_training.name',
+        'types_training.trainers',
       ])
       ->join('types_training', 'types_training.id', '=', 'prices.training_type')
       ->get();
